@@ -6,11 +6,11 @@ from collections.abc import Iterable
 import typing
 from piwot.utils.time import get_timestamp_simple
 
-def check_file_dir(path:str):
+def check_file_dir(path:str, extention:str='.txt'):
     if not path:
         path = './'
     if os.path.isdir(path):
-        path = os.path.join(path, f'{get_timestamp_simple(long=True)}.txt')
+        path = os.path.join(path, f'{get_timestamp_simple(long=True)}{extention}')
     else:
         directory, file_name = os.path.split(path)
         if directory and directory != './':
@@ -22,7 +22,7 @@ def read_txt(path:str, encoding:str='utf8'):
         return fi.read()
 
 def write_txt(data:Union[str, typing.Iterable[str]], path:str, add_new_line:bool=False, encoding:str='utf8'):
-    path = check_file_dir(path)
+    path = check_file_dir(path, extention='.txt')
     with open(path, 'w', encoding=encoding) as fo:
         if isinstance(data, str):
             fo.write(data)
@@ -41,7 +41,7 @@ def read_json(path:str, encoding:str='utf8', as_str:bool=False):
         return json.load(fi)
 
 def write_json(data, path:str=None, encoding:str='utf8', indent:int=4, to_str:bool=False):
-    path = check_file_dir(path)
+    path = check_file_dir(path, extention='.json')
     if to_str:
         return json.dumps(data, indent=indent)
 
