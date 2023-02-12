@@ -48,5 +48,46 @@ def write_json(data, path:str=None, encoding:str='utf8', indent:int=4, to_str:bo
     with open(path, 'w', encoding=encoding) as fo:
         json.dump(data, fo, indent=indent)
 
-def list_dir(dir_path:str):
+def listdir_fast(dir_path:str):
+    if not dir_path:
+        dir_path = './'
     return [os.path.join(dir_path, x) for x in os.listdir(dir_path)]
+
+def get_newest_file_in_dir(dir_path:str):
+    if not dir_path:
+        dir_path = './'
+    return max([os.path.join(dir_path, x) for x in os.listdir(dir_path)], key=os.path.getctime)
+
+def listdir(dir_path:str, no_dirs:bool=False, no_files:bool=False, sort_mode:str='none', reverse:bool=False)-> List[str]:
+    """Lists a provided directory.
+
+    Args:
+        dir_path (str): Directory to list.
+        no_dirs (bool, optional): Excludes directories. Defaults to False.
+        no_files (bool, optional): Excludes files. Defaults to False.
+        sort_mode (str, optional): Possible modes: 'none', 'size', 'time', 'alpha'. Defaults to 'none'.
+        reverse (bool, optional): Reverses the result. Defaults to False.
+
+    Returns:
+        List[str]: Full paths of objects in the specified directory.
+    """
+
+    if not dir_path:
+        dir_path = './'
+
+    path_gen = (os.path.join(dir_path, x) for x in os.listdir(dir_path))
+
+    paths = (p for p in path_gen if (not no_dirs and os.path.isdir(p)) or (not no_files and os.path.isfile(p)))
+    sort_mode = sort_mode.lower()
+    if sort_mode == 'time':
+        return sorted(paths, key=os.path.getctime, reverse=reverse)
+    
+    if sort_mode == 'size':
+        return sorted(paths, key=os.path.getsize, reverse=reverse)
+    
+    if sort_mode == 'alpha':
+        return sorted(paths, reverse=reverse)
+        
+    if reverse:
+        return list(reversed(paths))
+    return list(paths)
