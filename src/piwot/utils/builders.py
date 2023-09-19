@@ -54,4 +54,8 @@ def make_class_from_attributes(
 
     return f"class {class_name}:\n\tdef __init__(self, {header_args_str}) -> None:\n{body_args_str}"
 
+def body_arg_to_header_arg(body_arg:str, add_equal_null:bool=False):
+    pass
 
+def header_args_from_body_args(body_args:str, add_equal_null:bool=False):
+    pass
