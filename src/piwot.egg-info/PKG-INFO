@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: piwot
-Version: 0.0.1
+Version: 0.0.3
 Summary: Personal utils
 Author-email: Bob Ross <gal.anonim03@gmail.com>
 Project-URL: Homepage, https://github.com/pypa/sampleproject
@@ -12,8 +12,10 @@ Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-# Example Package
+# Welcome to Piwot Package.
 
-This is a simple example package. You can use
-[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
-to write your content.
+This is my personal package containing multiple, often unrelated features facilitating work with Python3 and its many little annoyances.
+
+As for now the package contains functionalities relating to:
+- I/O (i.e. complex dir listing, simple txt and json i/o functions)
+- Timestamps

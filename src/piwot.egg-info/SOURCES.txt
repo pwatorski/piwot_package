@@ -6,6 +6,7 @@ src/piwot.egg-info/PKG-INFO
 src/piwot.egg-info/SOURCES.txt
 src/piwot.egg-info/dependency_links.txt
 src/piwot.egg-info/top_level.txt
+src/piwot/sci/__init__.py
 src/piwot/utils/__init__.py
 src/piwot/utils/builders.py
 src/piwot/utils/io.py
