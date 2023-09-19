@@ -32,5 +32,5 @@ def get_timestamp(provided_time:Union[dt.datetime, dt.date, dt.time, dt.timedelt
 def get_timestamp_simple(long:bool=False):
     timestamp = dt.datetime.now().timestamp()
     if long:
-        timestamp = int(timestamp * 1000)z
+        timestamp = int(timestamp * 1000)
     return timestamp
